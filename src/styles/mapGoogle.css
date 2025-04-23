@@ -1,0 +1,26 @@
+/* Stile per il contenitore della mappa */
+.map-container {
+  width: 100%;
+  height: 500px;
+  border: 2px solid #ccc; /* Bordo */
+  border-radius: 10px; /* Angoli arrotondati */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombra */
+  margin: 20px 0; /* Spaziatura */
+}
+
+/* Stile per la finestra informativa */
+.info-window {
+  padding: 10px;
+  font-size: 14px;
+  color: #333;
+}
+
+.info-window h3 {
+  margin: 0;
+  font-size: 16px;
+  color: #007BFF; /* Colore blu */
+}
+
+.info-window p {
+  margin: 5px 0 0;
+}
