@@ -1,0 +1,14 @@
+import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
+import { DynamoDBDocumentClient, ScanCommand, PutCommand } from "@aws-sdk/lib-dynamodb";
+
+const client = new DynamoDBClient({ region: process.env.AWS_REGION });
+const ddb = DynamoDBDocumentClient.from(client);
+
+export default async function handler(req, res) {
+  if (req.method === 'GET') {
+    const data = await ddb.send(new ScanCommand({ TableName: 'Areas' }));
+    return res.status(200).json(data.Items);
+  }
+  res.setHeader('Allow', ['GET',/* 'POST' */]);
+  res.status(405).end(`Method ${req.method} Not Allowed`);
+}

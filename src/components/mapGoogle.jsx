@@ -1,10 +1,7 @@
-import React, { useEffect, useRef } from 'react';
-import { GoogleMap, LoadScript, Polygon, InfoWindow } from '@react-google-maps/api';
-import { Marker, AdvancedMarkerElement } from '@react-google-maps/api';
+import React from 'react';
+import { GoogleMap, LoadScript, Polygon, InfoWindow, Marker } from '@react-google-maps/api';
 
 const GOOGLE_MAPS_KEY = "AIzaSyClLzs-RVQ_rfoxcBVnSXc8bqFkwM2zfn0";
-
-
 
 const containerStyle = {
   width: '90%',
@@ -14,42 +11,9 @@ const containerStyle = {
   borderRadius: '8px',
   boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)'
 }
-const center = { lat: 39.2276, lng: 9.1086 }; // Parco di Terramainxi
+const center = { lat: 39.246567, lng: 9.140266 }; // Parco di Terramainxi
 
-const polygonPath = [
-  { lat: 39.2280, lng: 9.1075 },
-  { lat: 39.2285, lng: 9.1090 },
-  { lat: 39.2270, lng: 9.1095 },
-  { lat: 39.2270, lng: 9.1075 },
-];
-
-export default function MapGoogle() {
-
-  const mapRef = useRef(null);
-  const markersRef = useRef([]);
-
-  useEffect(() => {
-    if (mapRef.current) {
-      // Crea i marker avanzati
-      const map = mapRef.current.state.map;
-
-      const marker1 = new google.maps.marker.AdvancedMarkerElement({
-        map,
-        position: { lat: 39.2278, lng: 9.1080 },
-        title: 'Ingresso principale',
-      });
-
-      const marker2 = new google.maps.marker.AdvancedMarkerElement({
-        map,
-        position: { lat: 39.2272, lng: 9.1090 },
-        title: 'Area picnic',
-      });
-
-      // Salva i marker in un riferimento per eventuali operazioni future
-      markersRef.current = [marker1, marker2];
-    }
-  }, [mapRef]);
-
+export default function MapGoogle({ markers, areas }) {
   return (
     <LoadScript
       googleMapsApiKey={GOOGLE_MAPS_KEY}
@@ -60,27 +24,38 @@ export default function MapGoogle() {
         mapContainerStyle={containerStyle}
         center={center}
         zoom={16}
-        onLoad={map => (mapRef.current = map)}
         options={{
           streetViewControl: false,
           fullscreenControl: false,
-          cameraControl: false
+          disableDoubleClickZoom: true,
+          mapTypeControl: false,
         }}
       >
-        <Polygon
-          paths={polygonPath}
-          options={{
-            fillColor: 'blue',
-            fillOpacity: 0.2,
-            strokeColor: 'blue',
-            strokeWeight: 2,
-          }}
-        />
+        
+        {areas.map(area => (
+          <Polygon
+            paths={area.path}
+            title={area.name}
+            key={area.id}
+            options={{
+              fillColor: 'blue',
+              fillOpacity: 0.2,
+              strokeColor: 'blue',
+              strokeWeight: 2,
+            }}
+          />
+        ))}
 
-        <Marker position={{ lat: 39.2278, lng: 9.1080 }} title="Ingresso principale" />
-
+        {markers.map(marker => (
+          <Marker
+            key={marker.id}
+            position={marker.position}
+            title={marker.title}
+          />
+        ))}
 
       </GoogleMap>
+
     </LoadScript>
   );
 }

@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 
 const navItems = [
   { id: 'home', label: 'Map', href: '/' },
-  { id: 'about', label: 'Table', href: '/sensor-data' },
+  { id: 'about', label: 'Table', href: '/sensors-data' },
 ];
 
 export default function Navbar() {
