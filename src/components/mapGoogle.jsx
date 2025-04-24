@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { GoogleMap, LoadScript, Polygon, InfoWindow } from '@react-google-maps/api';
-import { Marker,AdvancedMarkerElement } from '@react-google-maps/api';
+import { Marker, AdvancedMarkerElement } from '@react-google-maps/api';
 
 const GOOGLE_MAPS_KEY = "AIzaSyClLzs-RVQ_rfoxcBVnSXc8bqFkwM2zfn0";
 
@@ -23,7 +23,7 @@ const polygonPath = [
   { lat: 39.2270, lng: 9.1075 },
 ];
 
-export default function GoogleMapExample() {
+export default function MapGoogle() {
 
   const mapRef = useRef(null);
   const markersRef = useRef([]);
@@ -61,7 +61,11 @@ export default function GoogleMapExample() {
         center={center}
         zoom={16}
         onLoad={map => (mapRef.current = map)}
-
+        options={{
+          streetViewControl: false,
+          fullscreenControl: false,
+          cameraControl: false
+        }}
       >
         <Polygon
           paths={polygonPath}
@@ -74,8 +78,8 @@ export default function GoogleMapExample() {
         />
 
         <Marker position={{ lat: 39.2278, lng: 9.1080 }} title="Ingresso principale" />
-        
-        
+
+
       </GoogleMap>
     </LoadScript>
   );
