@@ -1,8 +1,7 @@
-// pages/sensor-data.jsx
+// pages/sensors-data.jsx
 'use client';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-//import SensorDataTable from '../components/SensorDataTable';
 import dynamic from 'next/dynamic';
 
 const SensorDataTable = dynamic(() => import('../components/SensorDataTable'), {
