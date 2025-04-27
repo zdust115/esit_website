@@ -38,9 +38,9 @@ export default function Home() {
   }, []);
 
   return (
-    <div>
+    <main style={{ padding: '2rem' }}>
       <h1>My Map Application</h1>
       <MapGoogle markers={markers} areas={areas} />
-    </div>
+    </main>
   );
 }
