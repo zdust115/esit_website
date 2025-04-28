@@ -26,11 +26,10 @@ export default function SensorDataPage() {
       .catch((err) => console.error(err));
   };
 
-  /* useEffect(() => {
-    //fetchData(offset);
-    console.log("offset: ", offset);
+  useEffect(() => {
+    fetchData(offset);
   }
-  , [offset]); */
+  , []);
   // Carica i dati iniziali quando il componente viene montato
  
   const loadMore = () => {
