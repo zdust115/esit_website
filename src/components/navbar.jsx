@@ -7,22 +7,21 @@ export default function Navbar() {
   return (
     <nav className="flex items-center justify-between bg-gray-800 p-4">
       <div className="text-white text-lg font-semibold">MyApp</div>
-      <ul className="flex space-x-4 items-center">
-        <li>
-          <Link href="/" className="text-gray-300 hover:text-white">
-            Home
-          </Link>
+      <ul className="flex items-center">
+        <li className="text-gray-300 hover:text-white px-4">
+          <Link href="/">Home</Link>
         </li>
-        <li>
-          <Link href="/sensors-data" className="text-gray-300 hover:text-white">
-            Sensor Table
-          </Link>
+        <li className="text-gray-300 hover:text-white px-4 border-l border-gray-600">
+          <Link href="/sensors-data">Sensor Table</Link>
+        </li>
+        <li className="text-gray-300 hover:text-white px-4 border-l border-gray-600">
+          <Link href="/alerts">Alerts</Link>
         </li>
         {status === 'authenticated' && (
-          <li>
+          <li className="text-gray-300 hover:text-white px-4 border-l border-gray-600">
             <button
               onClick={() => signOut({ callbackUrl: '/login' })}
-              className="text-gray-300 hover:text-white bg-transparent border border-gray-400 hover:border-white px-3 py-1 rounded"
+              className="bg-transparent border border-gray-400 hover:border-white px-3 py-1 rounded"
             >
               Logout
             </button>
