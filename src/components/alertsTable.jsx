@@ -14,9 +14,7 @@ import axios from 'axios';
  * @param {{ data: Array<{ alert_pk: string, humidity: number, temperature: number, state: string }> }} props
  */
 export default function AlertsTable({ data }) {
-  console.log('AlertsTable data:', data);
   const handleUpdate = (alert_pk) => {
-    console.log('Updating alert with pk:', alert_pk);
     axios
       .put('/api/alerts', { alert_pk })
       .then((res) => {
@@ -58,10 +56,7 @@ export default function AlertsTable({ data }) {
                     <Button
                       variant="contained"
                       color="primary"
-                      onClick={() => {
-                        console.log('Updating alert with pk:', row.alert_pk);
-                        handleUpdate(row.alert_pk)}}
-                    >
+                      onClick={() => {handleUpdate(row.alert_pk)}}>
                       Solve
                     </Button>
                   )}
