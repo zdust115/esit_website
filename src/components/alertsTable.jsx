@@ -17,21 +17,27 @@ export default function AlertsTable({ data }) {
       <Table aria-label="Alerts Data Table">
         <TableHead>
           <TableRow>
-            <TableCell><strong>Alert PK</strong></TableCell>
-            <TableCell><strong>Humidity</strong></TableCell>
+            <TableCell><strong>Timestamp</strong></TableCell>
+            <TableCell><strong>Sensor ID</strong></TableCell>
             <TableCell><strong>Temperature</strong></TableCell>
+            <TableCell><strong>Humidity</strong></TableCell>
             <TableCell><strong>State</strong></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map(row => (
-            <TableRow key={row.alert_pk} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-              <TableCell>{row.alert_pk}</TableCell>
-              <TableCell>{row.humidity}</TableCell>
-              <TableCell>{row.temperature}</TableCell>
-              <TableCell>{row.state}</TableCell>
-            </TableRow>
-          ))}
+          {data.map(row => {
+            // split del campo sensor_data_pk in timestamp e id sensore
+            const [timestamp, sensorId] = row.alert_pk.split('-');
+            return (
+
+              <TableRow key={row.alert_pk} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                <TableCell>{timestamp}</TableCell>
+                <TableCell>{sensorId}</TableCell>
+                <TableCell>{row.temperature}</TableCell>
+                <TableCell>{row.humidity}</TableCell>
+                <TableCell>{row.state}</TableCell>
+              </TableRow>
+            )})}
         </TableBody>
       </Table>
     </TableContainer>
