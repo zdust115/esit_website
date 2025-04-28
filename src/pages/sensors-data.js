@@ -11,7 +11,7 @@ const SensorDataTable = dynamic(() => import('../components/SensorDataTable'), {
 export default function SensorDataPage() {
   const [data, setData] = useState([]);
   useEffect(() => {
-    axios.get('/api/sensorsData')
+    axios.get('/api/sensors-data')
       .then(res => setData(res.data))
       .catch(err => console.error(err));
   }, []);
